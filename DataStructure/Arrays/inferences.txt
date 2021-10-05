@@ -1,0 +1,2 @@
+1. when we need to find the max (of anything) in an array. we can simply store the max and currentMax as we iterate through the array.
+2. Math.log10 +1 can be used to find the number of digits
