@@ -19,10 +19,10 @@ public class AddTwoNumbers {
     }
 
     public ListNode makeList(int[] arr) {
-        ListNode resultHead = new ListNode(arr[0],null);
+        ListNode resultHead = new ListNode(arr[0], null);
         ListNode resultIter = resultHead;
         for (int i=1; i<arr.length;i++) {
-            resultIter.next = new ListNode(arr[i],null);
+            resultIter.next = new ListNode(arr[i], null);
             resultIter = resultIter.next;
         }
         return resultHead;
@@ -42,7 +42,7 @@ public class AddTwoNumbers {
             int sum = l1.val+l2.val+carry;
             carry = sum/10;
             sum = sum%10;
-            resultIter.next = new ListNode(sum,null);
+            resultIter.next = new ListNode(sum, null);
             resultIter = resultIter.next;
             l1=l1.next;
             l2=l2.next;
@@ -52,7 +52,7 @@ public class AddTwoNumbers {
             int sum = l1.val+carry;
             carry = sum/10;
             sum = sum%10;
-            resultIter.next = new ListNode(sum,null);
+            resultIter.next = new ListNode(sum, null);
             resultIter = resultIter.next;
             l1=l1.next;
         }
@@ -61,32 +61,32 @@ public class AddTwoNumbers {
             int sum = l2.val+carry;
             carry = sum/10;
             sum = sum%10;
-            resultIter.next = new ListNode(sum,null);
+            resultIter.next = new ListNode(sum, null);
             resultIter = resultIter.next;
             l2=l2.next;
         }
 
         if(carry!=0) {
-            resultIter.next = new ListNode(carry%10);
+            resultIter.next = new ListNode(carry % 10);
         }
 
         return resultHead;
     }
-}
 
-class ListNode {
-    int val;
-    ListNode next;
+    static class ListNode {
+        int val;
+        ListNode next;
 
-    ListNode() {
-    }
+        ListNode() {
+        }
 
-    ListNode(int val) {
-        this.val = val;
-    }
+        ListNode(int val) {
+            this.val = val;
+        }
 
-    ListNode(int val, ListNode next) {
-        this.val = val;
-        this.next = next;
+        ListNode(int val, ListNode next) {
+            this.val = val;
+            this.next = next;
+        }
     }
 }
