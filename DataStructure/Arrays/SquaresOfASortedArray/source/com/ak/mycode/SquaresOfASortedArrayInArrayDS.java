@@ -1,10 +1,10 @@
 package com.ak.mycode;
 
-public class SquaresOfASortedArray {
+public class SquaresOfASortedArrayInArrayDS {
 
     public static void main(String[] args) {
         int[] input = {-5,-3,-2,-1};
-        int[] result = new SquaresOfASortedArray().sortedSquares(input);
+        int[] result = new SquaresOfASortedArrayInArrayDS().sortedSquares(input);
         System.out.println("Result : ");
         for(int num : result) {
             System.out.println(num);
