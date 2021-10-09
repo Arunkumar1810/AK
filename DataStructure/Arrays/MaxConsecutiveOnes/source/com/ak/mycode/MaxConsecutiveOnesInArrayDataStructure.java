@@ -1,10 +1,10 @@
 package com.ak.mycode;
 
-public class MaxConsecutiveOnes {
+public class MaxConsecutiveOnesInArrayDataStructure {
 
     public static void main(String[] args) {
         int[] input = {};
-        int result = new MaxConsecutiveOnes().findMaxConsecutiveOnes(input);
+        int result = new MaxConsecutiveOnesInArrayDataStructure().findMaxConsecutiveOnes(input);
         System.out.println("Result : "+result);
     }
 
