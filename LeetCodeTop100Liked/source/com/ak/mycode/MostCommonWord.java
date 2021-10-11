@@ -31,46 +31,19 @@ public class MostCommonWord {
             }
             else {
                 String string = currentString.toString();
-                if(!string.equals("")) {
-                    if(stringToCount.containsKey(string)) {
-                        int count = stringToCount.get(string);
-                        if(count!=-1) {
-                            count = count+1;
-                            if(maxCount<count) {
-                                maxCount = count;
-                                maxString = string;
-                            }
-                            stringToCount.put(string, count);
-                        }
-                    }
-                    else {
-                        if(maxCount<1) {
-                            maxString = string;
-                        }
-                        stringToCount.put(string,1);
-                    }
-                    currentString = new StringBuilder();
+                int count = stringToCount.getOrDefault(string,0);
+                if(count!=-1 && string.length()!=0 && maxCount<++count) {
+                    maxCount = count;
+                    maxString = string;
                 }
+                stringToCount.put(string, count);
+                currentString = new StringBuilder();
             }
         }
         String string = currentString.toString();
-        if(!string.equals("")) {
-            if(stringToCount.containsKey(string)) {
-                int count = stringToCount.get(string);
-                if(count!=-1) {
-                    count = count+1;
-                    if(maxCount<count) {
-                        maxString = string;
-                    }
-                    stringToCount.put(string, count);
-                }
-            }
-            else {
-                if(maxCount<1) {
-                    maxString = string;
-                }
-                stringToCount.put(string,1);
-            }
+        int count = stringToCount.getOrDefault(string,0);
+        if(string.length()!=0 && maxCount<=count) {
+            maxString = string;
         }
         return maxString;
     }
