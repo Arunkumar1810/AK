@@ -1,10 +1,11 @@
-package com.ak.mycode;
+package com.ak.mycode.array;
 
-public class SquaresOfASortedArrayInArrayDS {
+//https://leetcode.com/problems/squares-of-a-sorted-array/
+public class SquaresOfASortedArray {
 
     public static void main(String[] args) {
         int[] input = {-5,-3,-2,-1};
-        int[] result = new SquaresOfASortedArrayInArrayDS().sortedSquares(input);
+        int[] result = new SquaresOfASortedArray().sortedSquares(input);
         System.out.println("Result : ");
         for(int num : result) {
             System.out.println(num);

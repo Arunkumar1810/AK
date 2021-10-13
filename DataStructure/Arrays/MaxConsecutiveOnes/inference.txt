@@ -1,1 +1,0 @@
-1. when we need to find the max (of anything) in an array. we can simply store the max and currentMax as we iterate through the array.

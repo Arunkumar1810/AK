@@ -1,5 +1,6 @@
-package com.ak.mycode;
+package com.ak.mycode.array;
 
+//https://leetcode.com/problems/find-numbers-with-even-number-of-digits/
 public class FindNumbersWithEvenNumberOfDigits {
 
     public static void main(String[] args) {

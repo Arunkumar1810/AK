@@ -1,10 +1,11 @@
-package com.ak.mycode;
+package com.ak.mycode.array;
 
-public class MaxConsecutiveOnesInArrayDataStructure {
+//https://leetcode.com/problems/max-consecutive-ones/
+public class MaxConsecutiveOnes {
 
     public static void main(String[] args) {
         int[] input = {};
-        int result = new MaxConsecutiveOnesInArrayDataStructure().findMaxConsecutiveOnes(input);
+        int result = new MaxConsecutiveOnes().findMaxConsecutiveOnes(input);
         System.out.println("Result : "+result);
     }
 
