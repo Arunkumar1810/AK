@@ -1,4 +1,4 @@
-package com.ak.mycode;
+package com.ak.mycode.top100liked;
 
 //https://leetcode.com/problems/reverse-linked-list-ii/
 public class ReverseLinkedList2 {

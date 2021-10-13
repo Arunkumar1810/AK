@@ -1,4 +1,4 @@
-package com.ak.mycode;
+package com.ak.mycode.top100liked;
 
 public class TwoSum {
 

@@ -1,4 +1,4 @@
-package com.ak.mycode;
+package com.ak.mycode.top100liked;
 
 //https://leetcode.com/problems/maximum-depth-of-binary-tree
 public class MaximumDepthOfBinaryTree {

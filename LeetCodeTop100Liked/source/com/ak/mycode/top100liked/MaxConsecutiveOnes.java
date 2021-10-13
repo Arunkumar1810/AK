@@ -1,4 +1,4 @@
-package com.ak.mycode;
+package com.ak.mycode.top100liked;
 
 //https://leetcode.com/problems/max-consecutive-ones
 public class MaxConsecutiveOnes {
