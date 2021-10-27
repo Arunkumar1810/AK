@@ -8,6 +8,8 @@ import java.util.Arrays;
 
 //two pointers
 
+//medium
+
 public class SpecialProductList {
 
     public static void main(String[] args) {
