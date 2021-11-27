@@ -1,0 +1,12 @@
+Sorting
+~~~~~~~~
+
+Why Sorting?
+    Obvious : phone-book, mp3 player, dictionary
+
+    Problems That Become Easy :
+        1. Finding A Median
+        2. Binary Search
+        3. etc.,
+
+    Not Obvious : data compression, computer graphics
