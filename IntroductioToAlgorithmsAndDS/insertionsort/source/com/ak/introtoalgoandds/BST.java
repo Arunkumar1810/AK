@@ -2,6 +2,8 @@ package com.ak.introtoalgoandds;
 
 //fast insertion on a sorted array
 
+import java.util.Arrays;
+
 /*
     Definition :
     For all nodes x, if y is in the left subtree of x key(y)<=key(x), if y is in th right subtree of x key(y)>=key(x).
@@ -167,15 +169,90 @@ public class BST {
         return result;
     }
 
+    /*
+        Depth First Traversals
+        1. In Order Traversal : left -> root -> right or right -> root -> left
+        2. Pre Order Traversal : root -> left -> right
+        3. Post Order Traversal : left -> right -> root
+     */
+
+    //In Order Traversal : left -> root -> right or right -> root -> left
+    public int[] inOrderTraversal() {
+        if(head==null) return new int[]{};
+        else return inOrderTraversal(head,new int[head.subTreeSize],0);
+    }
+    private int[] inOrderTraversal(BSTNode node,int[] result,int index) {
+        if(node.left!=null) {
+            result = inOrderTraversal(node.left,result,index);
+            index+=node.left.subTreeSize;
+        }
+        result[index++] = node.val;
+        if(node.right!=null) {
+            result = inOrderTraversal(node.right,result,index);
+        }
+        return result;
+    }
+
+    //Pre-Order Traversal root -> left -> right
+    public int[] preOrderTraversal() {
+        if (head==null) return new int[]{};
+        return preOrderTraversal(head,new int[head.subTreeSize],0);
+    }
+    private int[] preOrderTraversal(BSTNode node,int[] result,int index) {
+        result[index++] = node.val;
+        if(node.left!=null) {
+            result = preOrderTraversal(node.left,result,index);
+            index+=node.left.subTreeSize;
+        }
+        if(node.right!=null) {
+            result = preOrderTraversal(node.right,result,index);
+        }
+        return result;
+    }
+
+    //Post-Order Traversal left -> right -> root
+    public int[] postOrderTraversal() {
+        if (head==null) return new int[]{};
+        return postOrderTraversal(head,new int[head.subTreeSize],0);
+    }
+    private int[] postOrderTraversal(BSTNode node,int[] result,int index) {
+        if(node.left!=null) {
+            result = postOrderTraversal(node.left,result,index);
+            index+=node.left.subTreeSize;
+        }
+        if(node.right!=null) {
+            result = postOrderTraversal(node.right,result,index);
+            index+=node.right.subTreeSize;
+        }
+        result[index] = node.val;
+        return result;
+    }
+
     public static void main(String[] args) {
         BST bst = new BST();
         int[] input = {3,2,5,3,7,4,8,10,4,6,3,7};
         for (int i : input) bst.insert(i);
+
         System.out.println("Max : "+bst.findMax());
         System.out.println("Min : "+bst.findMin());
+
         System.out.println(bst.firstElementSmallerThanOrEqualTo(9));
         System.out.println(bst.firstElementLargerThanOrEqualTo(9));
-        System.out.println("Elements larger than "+5+"are "+bst.elementsLargerThan(5));
-        System.out.println("Elements smaller than "+5+"are "+bst.elementsSmallerThan(5));
+
+        System.out.println("Elements larger than "+5+" are "+bst.elementsLargerThan(5));
+        System.out.println("Elements smaller than "+5+" are "+bst.elementsSmallerThan(5));
+
+        int[] inOrderTraversalResult = bst.inOrderTraversal();
+        System.out.println("In-Order Traversal Result Of BST :");
+        for (int i : inOrderTraversalResult) System.out.print("\t"+i);
+        System.out.println();
+        int[] preOrderTraversalResult = bst.preOrderTraversal();
+        System.out.println("Pre-Order Traversal Result Of BST :");
+        for (int i : preOrderTraversalResult) System.out.print("\t"+i);
+        System.out.println();
+        int[] postOrderTraversalResult = bst.postOrderTraversal();
+        System.out.println("Post-Order Traversal Result Of BST :");
+        for (int i : postOrderTraversalResult) System.out.print("\t"+i);
+        System.out.println();
     }
 }
