@@ -1,0 +1,181 @@
+package com.ak.introtoalgoandds;
+
+//fast insertion on a sorted array
+
+/*
+    Definition :
+    For all nodes x, if y is in the left subtree of x key(y)<=key(x), if y is in th right subtree of x key(y)>=key(x).
+ */
+public class BST {
+
+    private static class BSTNode {
+        int val;
+        BSTNode left;
+        BSTNode right;
+        BSTNode parent;
+        int subTreeSize;
+    }
+
+    BSTNode head = null;
+
+    //Time Complexity - O(h) not O(log n) where h is the height of the tree
+    public void insert(int val) {
+        if(head==null) {
+            head = new BSTNode();
+            head.val = val;
+            head.subTreeSize = 1;
+            return;
+        }
+        BSTNode iterator = head;
+        while (true) {
+            if(iterator.val<=val) {
+                if(iterator.right==null) {
+                    iterator.right = new BSTNode();
+                    iterator.right.val = val;
+                    iterator.right.parent = iterator;
+                    iterator.subTreeSize++;
+                    iterator.right.subTreeSize = 1;
+                    return;
+                }
+                iterator.subTreeSize++;
+                iterator = iterator.right;
+            }
+            else {
+                if(iterator.left==null) {
+                    iterator.left = new BSTNode();
+                    iterator.left.val = val;
+                    iterator.left.parent = iterator;
+                    iterator.subTreeSize++;
+                    iterator.left.subTreeSize = 1;
+                    return;
+                }
+                iterator.subTreeSize++;
+                iterator = iterator.left;
+            }
+        }
+    }
+
+    //O(h)
+    public int findMin() {
+        BSTNode iter = head;
+        while (iter.left!=null) {
+            iter = iter.left;
+        }
+        return iter.val;
+    }
+
+    //O(h)
+    public int findMax() {
+        BSTNode iter = head;
+        while (iter.right!=null) {
+            iter = iter.right;
+        }
+        return iter.val;
+    }
+
+    //O(h)
+    public int firstElementLargerThanOrEqualTo(int val) {
+        if(head==null) return Integer.MAX_VALUE;
+        return firstElementLargerThanOrEqualTo(val,head);
+    }
+
+    private int firstElementLargerThanOrEqualTo(int val,BSTNode iterator) {
+        if(iterator.val<val) {
+            if(iterator.right!=null) return firstElementLargerThanOrEqualTo(val,iterator.right);
+            return Integer.MAX_VALUE;
+        }
+        else {
+            int result = iterator.val;
+            if(iterator.left!=null) {
+                result = Math.min(result,firstElementLargerThanOrEqualTo(val,iterator.left));
+            }
+            if(iterator.right!=null) {
+                result = Math.min(result,firstElementLargerThanOrEqualTo(val,iterator.right));
+            }
+            return result;
+        }
+    }
+
+    //O(h)
+    public int firstElementSmallerThanOrEqualTo(int val)
+    {
+        if(head==null) return Integer.MIN_VALUE;
+        return firstElementSmallerThanOrEqualTo(val,head);
+    }
+
+    private int firstElementSmallerThanOrEqualTo(int val,BSTNode iterator) {
+        if(iterator.val>val) {
+            if(iterator.right!=null) return firstElementSmallerThanOrEqualTo(val,iterator.right);
+            return Integer.MIN_VALUE;
+        }
+        else {
+            int result = iterator.val;
+            if(iterator.left!=null) {
+                result = Math.max(result,firstElementSmallerThanOrEqualTo(val,iterator.left));
+            }
+            if(iterator.right!=null) {
+                result = Math.max(result,firstElementSmallerThanOrEqualTo(val,iterator.right));
+            }
+            return result;
+        }
+    }
+
+    //O(h)
+    public int elementsLargerThan(int val) {
+        if(head==null) return 0;
+        return elementsLargerThan(val,head);
+    }
+
+    private int elementsLargerThan(int val,BSTNode iterator) {
+        int result = 0;
+        if(iterator.val>=val) {
+            result = 1;
+            if(iterator.right!=null) {
+                result+=iterator.right.subTreeSize;
+            }
+            if(iterator.left!=null) {
+                result += elementsLargerThan(val,iterator.left);
+            }
+        }
+        else {
+            if(iterator.right!=null) result = elementsLargerThan(val,iterator.right);
+        }
+        return result;
+    }
+
+    //O(h)
+    public int elementsSmallerThan(int val)
+    {
+        if(head==null) return 0;
+        return elementsSmallerThan(val,head);
+    }
+
+    private int elementsSmallerThan(int val,BSTNode iterator) {
+        int result = 0;
+        if(iterator.val<=val) {
+            result = 1;
+            if(iterator.left!=null) {
+                result+=iterator.left.subTreeSize;
+            }
+            if(iterator.right!=null) {
+                result += elementsLargerThan(val,iterator.right);
+            }
+        }
+        else {
+            if(iterator.left!=null) result = elementsLargerThan(val,iterator.left);
+        }
+        return result;
+    }
+
+    public static void main(String[] args) {
+        BST bst = new BST();
+        int[] input = {3,2,5,3,7,4,8,10,4,6,3,7};
+        for (int i : input) bst.insert(i);
+        System.out.println("Max : "+bst.findMax());
+        System.out.println("Min : "+bst.findMin());
+        System.out.println(bst.firstElementSmallerThanOrEqualTo(9));
+        System.out.println(bst.firstElementLargerThanOrEqualTo(9));
+        System.out.println("Elements larger than "+5+"are "+bst.elementsLargerThan(5));
+        System.out.println("Elements smaller than "+5+"are "+bst.elementsSmallerThan(5));
+    }
+}
