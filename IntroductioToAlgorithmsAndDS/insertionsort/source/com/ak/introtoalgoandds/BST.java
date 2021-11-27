@@ -2,8 +2,6 @@ package com.ak.introtoalgoandds;
 
 //fast insertion on a sorted array
 
-import java.util.Arrays;
-
 /*
     Definition :
     For all nodes x, if y is in the left subtree of x key(y)<=key(x), if y is in th right subtree of x key(y)>=key(x).

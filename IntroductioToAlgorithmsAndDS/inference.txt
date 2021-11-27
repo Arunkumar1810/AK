@@ -19,3 +19,9 @@ Priority Queue
     Implements a set S of elements, each of elements associated with a key(priority).
 
     Priority Queue can be implemented with heap data structure.
+
+
+Tree
+~~~~~~
+
+    h = height of a tree = longest path from root to leaf
