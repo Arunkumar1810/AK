@@ -10,3 +10,12 @@ Why Sorting?
         3. etc.,
 
     Not Obvious : data compression, computer graphics
+
+
+
+Priority Queue
+~~~~~~~~~~~~~~~~
+
+    Implements a set S of elements, each of elements associated with a key(priority).
+
+    Priority Queue can be implemented with heap data structure.
