@@ -1,4 +1,4 @@
-package com.ak.mycode.binarysearch;
+package com.ak.mycode.leetcode;
 
 public class SumOfNodesWithEvenValuedGrandparent {
     public class TreeNode {
