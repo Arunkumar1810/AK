@@ -1,54 +1,15 @@
 package com.ak.mycode.leetcode;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.ak.mycode.tools.BinaryTreeUtil;
 
-//https://leetcode.com/problems/merge-two-binary-trees/
-public class MergeTwoBinaryTrees {
+public class MergeTwoBinaryTrees extends BinaryTreeUtil {
 
     public static void main(String[] args) {
         MergeTwoBinaryTrees mergeTwoBinaryTrees = new MergeTwoBinaryTrees();
-        TreeNode root1 = mergeTwoBinaryTrees.addElement(new Integer[]{1,3,2,5},0);
-        TreeNode root2 = mergeTwoBinaryTrees.addElement(new Integer[]{2,1,3,null,4,null,7},0);
+        TreeNode root1 = addElement(new Integer[]{1,3,2,5},0);
+        TreeNode root2 = addElement(new Integer[]{2,1,3,null,4,null,7},0);
         TreeNode result = mergeTwoBinaryTrees.mergeTrees(root1,root2);
-        mergeTwoBinaryTrees.printElements(result);
-    }
-
-    public TreeNode addElement(Integer[] arr, int index) {
-        if(index<arr.length && arr[index]!=null) {
-            return new TreeNode(arr[index], addElement(arr, index * 2 + 1), addElement(arr, index * 2 + 2));
-        }
-        return null;
-    }
-    public void printElements(TreeNode root) {
-        List<TreeNode> currLevel = new ArrayList<>();
-        currLevel.add(root);
-        int level = 1;
-        while(currLevel.size() > 0) {
-
-            // Output
-            currLevel.forEach(x -> System.out.print(x.val + " "));
-
-            // Preparation for next level
-            List<TreeNode> nextLevel = new ArrayList<>();
-            for (int i = currLevel.size() - 1; i >= 0; i--) {
-                TreeNode left = currLevel.get(i).left;
-                TreeNode right = currLevel.get(i).right;
-
-                if (level % 2 == 0) {
-                    if (left != null) nextLevel.add(left);
-                    if (right != null) nextLevel.add(right);
-                } else {
-                    if (right != null) nextLevel.add(right);
-                    if (left != null) nextLevel.add(left);
-                }
-            }
-            currLevel.clear();
-            currLevel.addAll(nextLevel);
-
-            level++;
-        }
-        System.out.println("");
+        System.out.println(printTree(result));
     }
 
     public TreeNode mergeTrees(TreeNode root1, TreeNode root2) {
@@ -62,26 +23,36 @@ public class MergeTwoBinaryTrees {
             return new TreeNode(root1.val+root2.val,mergeTrees(root1.left,root2.left),mergeTrees(root1.right,root2.right));
         }
     }
-
-    static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode() {
-        }
-
-        TreeNode(int val) {
-            this.val = val;
-        }
-
-        TreeNode(int val, TreeNode left, TreeNode right) {
-            this.val = val;
-            this.left = left;
-            this.right = right;
-        }
-    }
-
 }
+
+//link - https://leetcode.com/problems/merge-two-binary-trees/
+
+/*
+Question : -
+    You are given two binary trees root1 and root2.
+    Imagine that when you put one of them to cover the other, some nodes of the two trees are overlapped while the others are not. You need to merge the two trees into a new binary tree. The merge rule is that if two nodes overlap, then sum node values up as the new value of the merged node. Otherwise, the NOT null node will be used as the node of the new tree.
+    Return the merged tree.
+    Note: The merging process must start from the root nodes of both trees.
+
+Constraints : -
+    The number of nodes in both trees is in the range [0, 2000].
+    -10^4 <= Node.val <= 10^4
+ */
+
+/*
+Example : -
+    Input: root1 = [1,3,2,5], root2 = [2,1,3,null,4,null,7]
+    Output: [3,4,5,5,4,null,7]
+ */
+
+//level - easy
+
+//algorithms used - dfs
+
+//available in lists -
+
+//Time Complexity - O(n)
+
+//Space Complexity - O(1)
 
 

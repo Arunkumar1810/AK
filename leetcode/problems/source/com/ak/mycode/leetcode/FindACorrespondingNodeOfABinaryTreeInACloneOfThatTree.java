@@ -1,55 +1,18 @@
 package com.ak.mycode.leetcode;
 
-public class FindACorrespondingNodeOfABinaryTreeInACloneOfThatTree {
+import com.ak.mycode.tools.BinaryTreeUtil;
 
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode() {
-        }
-
-        TreeNode(int val) {
-            this.val = val;
-        }
-
-        TreeNode(int val, TreeNode left, TreeNode right) {
-            this.val = val;
-            this.left = left;
-            this.right = right;
-        }
-    }
-
-    public TreeNode addElement(Integer[] arr, int index) {
-        if (index < arr.length && arr[index] != null) {
-            return new TreeNode(arr[index], addElement(arr, index * 2 + 1), addElement(arr, index * 2 + 2));
-        }
-        return null;
-    }
-
-    public TreeNode getNode(TreeNode root,int val) {
-        if(root==null) return null;
-
-        if(root.val==val) return root;
-        else {
-            TreeNode result = getNode(root.left,val);
-            if(result==null) {
-                result = getNode(root.right,val);
-            }
-            return result;
-        }
-    }
+public class FindACorrespondingNodeOfABinaryTreeInACloneOfThatTree extends BinaryTreeUtil {
 
     public static void main(String[] args) {
         Integer[] input = new Integer[]{6,7,8,2,7,1,3,9,null,1,4,null,null,null,5};
         FindACorrespondingNodeOfABinaryTreeInACloneOfThatTree obj = new FindACorrespondingNodeOfABinaryTreeInACloneOfThatTree();
-        TreeNode original = obj.addElement(input,0);
-        TreeNode cloned = obj.addElement(input,0);
-        TreeNode target = obj.getNode(original,3);
-        System.out.println(target+ " Value : "+target.val);
+        TreeNode original = addElement(input,0);
+        TreeNode cloned = addElement(input,0);
+        TreeNode target = getNode(original,3);
+        System.out.println(target+ " Value : "+(target==null?"null":target.val));
         TreeNode result = obj.getTargetCopy(original,cloned,target);
-        System.out.println(result+" Value : "+result.val);
+        System.out.println(result+" Value : "+(result==null?"null":result.val));
     }
 
     public final TreeNode getTargetCopy(final TreeNode original, final TreeNode cloned, final TreeNode target) {
@@ -70,7 +33,7 @@ public class FindACorrespondingNodeOfABinaryTreeInACloneOfThatTree {
     private boolean treesAreEqual(final TreeNode cloned, final TreeNode target) {
         if(cloned==null && target==null) return true;
         if(cloned==null || target==null) return false;
-        if(cloned.val==target.val) {
+        if(cloned.val.equals(target.val)) {
             return treesAreEqual(cloned.left,target.left) && treesAreEqual(cloned.right,target.right);
         }
         return false;
@@ -97,6 +60,12 @@ Constraints : -
 /*
 Example : -
     Input: tree = [7,4,3,null,null,6,19], target = 3
+        Visualize :
+            7
+            ├──4
+            └──3
+               ├──6
+               └──19
     Output: 3
     Explanation: In all examples the original and cloned trees are shown. The target node is a green node from the original tree. The answer is the yellow node from the cloned tree.
 
@@ -104,7 +73,7 @@ Example : -
 
 //level - medium
 
-//algorithms used - divide and conquer
+//algorithms used - dfs
 
 //available in lists - tree-tag
 

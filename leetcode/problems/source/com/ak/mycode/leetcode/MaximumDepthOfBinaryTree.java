@@ -1,11 +1,12 @@
 package com.ak.mycode.leetcode;
 
-//https://leetcode.com/problems/maximum-depth-of-binary-tree
-public class MaximumDepthOfBinaryTree {
+import com.ak.mycode.tools.BinaryTreeUtil;
+
+public class MaximumDepthOfBinaryTree extends BinaryTreeUtil {
 
     public static void main(String[] args) {
         MaximumDepthOfBinaryTree maximumDepthOfBinaryTree = new MaximumDepthOfBinaryTree();
-        TreeNode root = maximumDepthOfBinaryTree.addElement(new Integer[]{0},0);
+        TreeNode root = addElement(new Integer[]{0},0);
         System.out.println("Max Depth : "+maximumDepthOfBinaryTree.maxDepth(root));
     }
 
@@ -15,30 +16,32 @@ public class MaximumDepthOfBinaryTree {
         }
         return 0;
     }
-
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode() {
-        }
-
-        TreeNode(int val) {
-            this.val = val;
-        }
-
-        TreeNode(int val, TreeNode left, TreeNode right) {
-            this.val = val;
-            this.left = left;
-            this.right = right;
-        }
-    }
-
-    public TreeNode addElement(Integer[] arr, int index) {
-        if(index<arr.length && arr[index]!=null) {
-            return new TreeNode(arr[index], addElement(arr, index * 2 + 1), addElement(arr, index * 2 + 2));
-        }
-        return null;
-    }
 }
+
+//link - https://leetcode.com/problems/maximum-depth-of-binary-tree
+
+/*
+Question : -
+    Given the root of a binary tree, return its maximum depth.
+    A binary tree's maximum depth is the number of nodes along the longest path from the root node down to the farthest leaf node.
+
+Constraints : -
+    The number of nodes in the tree is in the range [0, 10^4].
+    -100 <= Node.val <= 100
+ */
+
+/*
+Example : -
+    Input: root = [3,9,20,null,null,15,7]
+    Output: 3
+ */
+
+//level - easy
+
+//algorithms used - dfs
+
+//available in lists -
+
+//Time Complexity - O(n)
+
+//Space Complexity - O(1)

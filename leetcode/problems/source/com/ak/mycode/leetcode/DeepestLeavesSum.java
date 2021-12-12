@@ -1,38 +1,13 @@
 package com.ak.mycode.leetcode;
 
+import com.ak.mycode.tools.BinaryTreeUtil;
 import java.util.HashMap;
 
-public class DeepestLeavesSum {
-
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode() {
-        }
-
-        TreeNode(int val) {
-            this.val = val;
-        }
-
-        TreeNode(int val, TreeNode left, TreeNode right) {
-            this.val = val;
-            this.left = left;
-            this.right = right;
-        }
-    }
-
-    public TreeNode addElement(Integer[] arr, int index) {
-        if (index < arr.length && arr[index] != null) {
-            return new TreeNode(arr[index], addElement(arr, index * 2 + 1), addElement(arr, index * 2 + 2));
-        }
-        return null;
-    }
+public class DeepestLeavesSum extends BinaryTreeUtil {
 
     public static void main(String[] args) {
         Integer[] input = new Integer[]{6,7,8,2,7,1,3,9,null,1,4,null,null,null,5};
-        TreeNode root = new DeepestLeavesSum().addElement(input,0);
+        TreeNode root = addElement(input,0);
         System.out.println(new DeepestLeavesSum().deepestLeavesSum(root));
     }
 
@@ -91,7 +66,7 @@ Example : -
 
 //level - medium
 
-//algorithms used - divide and conquer
+//algorithms used - dfs
 
 //available in lists - tree-tag
 

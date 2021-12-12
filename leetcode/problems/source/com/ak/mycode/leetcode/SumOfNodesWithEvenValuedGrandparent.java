@@ -1,36 +1,13 @@
 package com.ak.mycode.leetcode;
 
-public class SumOfNodesWithEvenValuedGrandparent {
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
+import com.ak.mycode.tools.BinaryTreeUtil;
 
-        TreeNode() {
-        }
-
-        TreeNode(int val) {
-            this.val = val;
-        }
-
-        TreeNode(int val, TreeNode left, TreeNode right) {
-            this.val = val;
-            this.left = left;
-            this.right = right;
-        }
-    }
-
-    public TreeNode addElement(Integer[] arr, int index) {
-        if (index < arr.length && arr[index] != null) {
-            return new TreeNode(arr[index], addElement(arr, index * 2 + 1), addElement(arr, index * 2 + 2));
-        }
-        return null;
-    }
+public class SumOfNodesWithEvenValuedGrandparent extends BinaryTreeUtil {
 
     public static void main(String[] args) {
         Integer[] input = new Integer[]{6,7,8,2,7,1,3,9,null,1,4,null,null,null,5};
         SumOfNodesWithEvenValuedGrandparent obj = new SumOfNodesWithEvenValuedGrandparent();
-        TreeNode root = obj.addElement(input,0);
+        TreeNode root = addElement(input,0);
         System.out.println(obj.sumEvenGrandparent(root));
     }
 
@@ -76,7 +53,7 @@ Example : -
 
 //level - medium
 
-//algorithms used - divide and conquer
+//algorithms used - dfs
 
 //available in lists - tree-tag
 

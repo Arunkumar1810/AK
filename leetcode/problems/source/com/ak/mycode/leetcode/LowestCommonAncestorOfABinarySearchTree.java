@@ -1,58 +1,19 @@
 package com.ak.mycode.leetcode;
 
-//https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
-public class LowestCommonAncestorOfABinarySearchTree {
+import com.ak.mycode.tools.BinaryTreeUtil;
+
+public class LowestCommonAncestorOfABinarySearchTree extends BinaryTreeUtil {
 
     public static void main(String[] args) {
-        LowestCommonAncestorOfABinarySearchTree lowestCommonAncestorOfABinarySearchTree = new LowestCommonAncestorOfABinarySearchTree();
-        TreeNode root = lowestCommonAncestorOfABinarySearchTree.addAndGetRootNode(new Integer[]{2,1,3});
-        TreeNode result = lowestCommonAncestorOfABinarySearchTree.lowestCommonAncestor(root, lowestCommonAncestorOfABinarySearchTree.getElement(root,3),lowestCommonAncestorOfABinarySearchTree.getElement(root,1) );
+        LowestCommonAncestorOfABinarySearchTree obj = new LowestCommonAncestorOfABinarySearchTree();
+        TreeNode root = addElement(new Integer[]{2,1,3},0);
+        TreeNode result = obj.lowestCommonAncestor(root, getNode(root,3),getNode(root,1) );
         System.out.println("Result : "+result.val);
     }
 
-    public TreeNode addAndGetRootNode(Integer[] arr) {
-        TreeNode root = new TreeNode(arr[0]);
-        for(int i=1;i<arr.length;i++) {
-            addElement(root,arr[i]);
-        }
-        return root;
-    }
-
-    public void addElement(TreeNode root, Integer element) {
-        if(element == null) return;
-        if(root.val<element) {
-            if(root.right!=null) {
-                addElement(root.right,element);
-            }
-            else {
-                root.right = new TreeNode(element);
-            }
-        }
-        else {
-            if(root.left!=null) {
-                addElement(root.left,element);
-            }
-            else {
-                root.left = new TreeNode(element);
-            }
-        }
-    }
-
-    public TreeNode getElement(TreeNode root, Integer value) {
-        if(root.val == value) {
-            return root;
-        }
-        else if(root.val>value) {
-            return getElement(root.left,value);
-        }
-        else {
-            return getElement(root.right,value);
-        }
-    }
-
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-
-        if(root.val==p.val || root.val==q.val) {
+        if(root==null) return null;
+        if(root.val.equals(p.val) || root.val.equals(q.val)) {
             return root;
         }
 
@@ -64,24 +25,43 @@ public class LowestCommonAncestorOfABinarySearchTree {
             return root;
         }
 
-        if(root.val<p.val && root.val<q.val) {
+        if(root.val<p.val) {
             return lowestCommonAncestor(root.right,p,q);
         }
 
-        if(root.val>p.val && root.val>q.val) {
-            return lowestCommonAncestor(root.left,p,q);
-        }
+        return lowestCommonAncestor(root.left,p,q);
 
-        return null;
-    }
-
-    static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode(int x) {
-            val = x;
-        }
     }
 }
+
+//link - https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/
+
+/*
+Question : -
+    Given a binary search tree (BST), find the lowest common ancestor (LCA) of two given nodes in the BST.
+    According to the definition of LCA on Wikipedia: “The lowest common ancestor is defined between two nodes p and q as the lowest node in T that has both p and q as descendants (where we allow a node to be a descendant of itself).”
+
+Constraints : -
+    The number of nodes in the tree is in the range [2, 105].
+    -10^9 <= Node.val <= 10^9
+    All Node.val are unique.
+    p != q
+    p and q will exist in the BST.
+ */
+
+/*
+Example : -
+    Input: root = [6,2,8,0,4,7,9,null,null,3,5], p = 2, q = 8
+    Output: 6
+    Explanation: The LCA of nodes 2 and 8 is 6.
+ */
+
+//level - easy
+
+//algorithms used - dfs
+
+//available in lists -
+
+//Time Complexity - O(n)
+
+//Space Complexity - O(1)

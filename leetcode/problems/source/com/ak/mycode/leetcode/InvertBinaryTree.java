@@ -1,15 +1,13 @@
 package com.ak.mycode.leetcode;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.ak.mycode.tools.BinaryTreeUtil;
 
-//https://leetcode.com/problems/invert-binary-tree/
-public class InvertBinaryTree {
+public class InvertBinaryTree extends BinaryTreeUtil {
     public static void main(String[] args) {
         InvertBinaryTree invertBinaryTree = new InvertBinaryTree();
-        TreeNode root = invertBinaryTree.addElement(new Integer[]{4, 2, 7, 1, 3, 6, 9}, 0);
+        TreeNode root = addElement(new Integer[]{4, 2, 7, 1, 3, 6, 9}, 0);
         root = invertBinaryTree.invertTree(root);
-        invertBinaryTree.printElements(root);
+        System.out.println(BinaryTreeUtil.printTree(root));
     }
 
     public TreeNode invertTree(TreeNode root) {
@@ -21,54 +19,43 @@ public class InvertBinaryTree {
         if (root.right != null) invertTree(root.right);
         return root;
     }
-
-    public TreeNode addElement(Integer[] arr, int index) {
-        if (index < arr.length && arr[index] != null) {
-            return new TreeNode(arr[index], addElement(arr, index * 2 + 1), addElement(arr, index * 2 + 2));
-        }
-        return null;
-    }
-
-    public void printElements(TreeNode root) {
-        List<TreeNode> currLevel = new ArrayList<>();
-        currLevel.add(root);
-        System.out.println(root.val);
-        while (currLevel.size() > 0) {
-            List<TreeNode> nextLevel = new ArrayList<>();
-            for (TreeNode head : currLevel) {
-                TreeNode left = head.left;
-                TreeNode right = head.right;
-                if (left != null) {
-                    System.out.println(left.val);
-                    nextLevel.add(left);
-                }
-                if (right != null) {
-                    System.out.println(right.val);
-                    nextLevel.add(right);
-                }
-            }
-            currLevel.clear();
-            currLevel.addAll(nextLevel);
-        }
-        System.out.println("");
-    }
-
-    public class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode() {
-        }
-
-        TreeNode(int val) {
-            this.val = val;
-        }
-
-        TreeNode(int val, TreeNode left, TreeNode right) {
-            this.val = val;
-            this.left = left;
-            this.right = right;
-        }
-    }
 }
+
+//link - https://leetcode.com/problems/invert-binary-tree/
+
+/*
+Question : -
+    Given the root of a binary tree, invert the tree, and return its root.
+ */
+
+/*
+Example : -
+    Input: root = [4,2,7,1,3,6,9]
+        Visualize :
+            4
+            ├──2
+            │  ├──1
+            │  └──3
+            └──7
+               ├──6
+               └──9
+    Output: [4,7,2,9,6,3,1]
+        Visualize :
+            4
+            ├──7
+            │  ├──9
+            │  └──6
+            └──2
+               ├──3
+               └──1
+ */
+
+//level - easy
+
+//algorithms used - dfs
+
+//available in lists -
+
+//Time Complexity - O(n)
+
+//Space Complexity - O(1)
