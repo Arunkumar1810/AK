@@ -33,6 +33,7 @@ public class DeepestLeavesSum {
     public static void main(String[] args) {
         Integer[] input = new Integer[]{6,7,8,2,7,1,3,9,null,1,4,null,null,null,5};
         TreeNode root = new DeepestLeavesSum().addElement(input,0);
+        System.out.println(new DeepestLeavesSum().deepestLeavesSum(root));
     }
 
     public int deepestLeavesSum(TreeNode root) {
