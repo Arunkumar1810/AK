@@ -1,15 +1,16 @@
 package com.ak.mycode.leetcode;
 
-//https://leetcode.com/problems/add-two-numbers/
-public class AddTwoNumbers {
+import com.ak.mycode.tools.LinkedListUtil;
+
+public class AddTwoNumbers extends LinkedListUtil {
 
     public static void main(String[] args) {
 
-        int[] l1= {9,9,9,9,9,9,9},
+        Integer[] l1= {9,9,9,9,9,9,9},
                 l2 = {9,9,9,9};
 
         AddTwoNumbers addTwoNumbers = new AddTwoNumbers();
-        ListNode result = addTwoNumbers.addTwoNumbers(addTwoNumbers.makeList(l1),addTwoNumbers.makeList(l2));
+        ListNode result = addTwoNumbers.addTwoNumbers(addElements(l1),addElements(l2));
 
         System.out.println("Result : ");
         while(result!=null) {
@@ -18,75 +19,67 @@ public class AddTwoNumbers {
         }
     }
 
-    public ListNode makeList(int[] arr) {
-        ListNode resultHead = new ListNode(arr[0], null);
-        ListNode resultIter = resultHead;
-        for (int i=1; i<arr.length;i++) {
-            resultIter.next = new ListNode(arr[i], null);
-            resultIter = resultIter.next;
-        }
-        return resultHead;
-    }
-
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
 
-        ListNode resultHead = new ListNode();
-        resultHead.val = l1.val + l2.val;
-        int carry = resultHead.val/10;
-        resultHead.val = resultHead.val%10;
-        ListNode resultIter = resultHead;
-        l1 = l1.next;
-        l2 = l2.next;
-        while(l1!=null && l2!=null)
-        {
-            int sum = l1.val+l2.val+carry;
-            carry = sum/10;
-            sum = sum%10;
-            resultIter.next = new ListNode(sum, null);
-            resultIter = resultIter.next;
-            l1=l1.next;
-            l2=l2.next;
+        int carry = 0;
+        if(l1==null) {
+            l1=l2;
+            l2=null;
+        }
+        ListNode result = l1;
+        ListNode l1Parent = null;
+        while(l1!=null && l2!=null) {
+            int res = l1.val + l2.val + carry;
+            l1.val = res%10;
+            carry = res/10;
+            l1Parent = l1;
+            l1 = l1.next;
+            l2 = l2.next;
         }
 
-        while(l1!=null) {
-            int sum = l1.val+carry;
-            carry = sum/10;
-            sum = sum%10;
-            resultIter.next = new ListNode(sum, null);
-            resultIter = resultIter.next;
-            l1=l1.next;
+        if (l2!=null) {
+            l1Parent.next = l2;
+            l1=l2;
         }
 
-        while(l2!=null) {
-            int sum = l2.val+carry;
-            carry = sum/10;
-            sum = sum%10;
-            resultIter.next = new ListNode(sum, null);
-            resultIter = resultIter.next;
-            l2=l2.next;
+        while (l1!=null) {
+            if(carry==0) return result;
+            int res = l1.val + carry;
+            l1.val = res%10;
+            carry = res/10;
+            l1Parent = l1;
+            l1 = l1.next;
         }
 
-        if(carry!=0) {
-            resultIter.next = new ListNode(carry % 10);
+        if(carry>0) {
+            l1Parent.next = new ListNode(carry);
         }
 
-        return resultHead;
-    }
-
-    static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode() {
-        }
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
+        return result;
     }
 }
+
+//link - https://leetcode.com/problems/add-two-numbers/
+
+/*
+Question : -
+    You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order, and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list.
+    You may assume the two numbers do not contain any leading zero, except the number 0 itself.
+ */
+
+/*
+Example : -
+    Input: l1 = [2,4,3], l2 = [5,6,4]
+    Output: [7,0,8]
+    Explanation: 342 + 465 = 807.
+ */
+
+//level - medium
+
+//algorithms used -
+
+//available in lists - amazon-questions
+
+//Time Complexity - O(n)
+
+//Space Complexity - O(1)
