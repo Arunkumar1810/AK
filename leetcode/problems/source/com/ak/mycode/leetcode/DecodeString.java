@@ -8,35 +8,33 @@ public class DecodeString {
 
     public String decodeString(String s) {
         int[] i = new int[1];
-        StringBuilder str = new StringBuilder(s);
-        return decodeString(str, i);
+        return decodeString(s.toCharArray(), i);
     }
 
-    private String decodeString(StringBuilder s, int[] i) {
-        int n = 0;
+    private String decodeString(char[] arr, int[] i) {
         StringBuilder result = new StringBuilder();
-
-        while (i[0] < s.length()) {
-            if (Character.isDigit(s.charAt(i[0]))) {
-                while (Character.isDigit(s.charAt(i[0]))) {
-                    n = n * 10 + s.charAt(i[0]) - '0';
-                    i[0]++;
-                }
-                i[0]++; // '['
-                String nested = decodeString(s, i);
-
-                while (n > 0) {
-                    result.append(nested);
-                    n--;
-                }
-            } else if (Character.isLetter(s.charAt(i[0]))) {
-                result.append(s.charAt(i[0]++));
-            } else if (s.charAt(i[0]) == ']') {
+        int count = 0;
+        for (;i[0]<arr.length;i[0]++) {
+            while ((arr[i[0]]-'0')>=0 && (arr[i[0]]-'0')<=9) {
+                count *= 10;
+                count += (arr[i[0]]-'0');
                 i[0]++;
+            }
+            if(arr[i[0]]=='[') {
+                i[0]++;
+                String stringToMultiply = decodeString(arr,i);
+                while (count>0) {
+                    result.append(stringToMultiply);
+                    count--;
+                }
+            }
+            else if(arr[i[0]]==']') {
                 return result.toString();
             }
+            else {
+                result.append(arr[i[0]]);
+            }
         }
-
         return result.toString();
     }
 }
@@ -65,9 +63,9 @@ Example : -
 
 //level - medium
 
-//algorithms used - stack
+//algorithms used - stack, recursion
 
-//available in lists -
+//available in lists - amazon-questions
 
 //Time Complexity - O(n)
 
