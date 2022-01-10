@@ -45,3 +45,5 @@ Example : -
 //Time Complexity - O(n+m)
 
 //Space Complexity - O(n)
+
+//inference - use string build even when we cannot append at start we can reverse it
