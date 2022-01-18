@@ -1,5 +1,7 @@
 package com.ak.mycode.leetcode;
 
+import java.util.HashMap;
+
 public class FinalValueOfVariableAfterPerformingOperations {
 
     public static void main(String[] args) {
@@ -58,3 +60,5 @@ Example : -
 //Time Complexity - O(n)
 
 //Space Complexity - O(1)
+
+//inference hashmap can also be used
