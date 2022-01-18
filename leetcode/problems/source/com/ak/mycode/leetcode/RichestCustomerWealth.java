@@ -11,11 +11,11 @@ public class RichestCustomerWealth {
     }
 
     public int maximumWealth(int[][] accounts) {
-        int max=0;
-        for(int[] cust : accounts) {
-            int currTotal=0;
-            for(int mon : cust) currTotal+=mon;
-            max=Math.max(max,currTotal);
+        int max = 0;
+        for (int[] account : accounts) {
+            int count = 0;
+            for (int i : account) count+=i;
+            max = Math.max(max,count);
         }
         return max;
     }
