@@ -8,12 +8,12 @@ public class ConcatenationOfArray {
     }
 
     public int[] getConcatenation(int[] nums) {
-        int[] res = new int[2*nums.length];
-        for(int i=0;i<nums.length;i++) {
-            res[i] = nums[i];
-            res[i+nums.length] = nums[i];
+        int[] ans = new int[nums.length*2];
+        for (int i=0;i<nums.length;i++) {
+            ans[i] = nums[i];
+            ans[i+1] = nums[i];
         }
-        return res;
+        return ans;
     }
 }
 
