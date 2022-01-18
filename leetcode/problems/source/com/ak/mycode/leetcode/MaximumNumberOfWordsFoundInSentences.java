@@ -9,21 +9,15 @@ public class MaximumNumberOfWordsFoundInSentences {
     }
 
     public int mostWordsFound(String[] sentences) {
-        byte max = 0 ;
+        int max = 0;
         for (String sentence : sentences) {
-            byte c = checkCount(sentence);
-            max = max > c ? max : c;
+            int count = 1;
+            for (char c : sentence.toCharArray()) {
+                if (c == ' ') count++;
+            }
+            max = Math.max(max, count);
         }
-        return max+1;
-    }
-
-    private byte checkCount(String str) {
-        byte count = 0;
-        byte len = (byte)str.length();
-        for(byte i = 0;i< len; i++) {
-            if (str.charAt(i) == ' ') count++;
-        }
-        return count;
+        return max;
     }
 }
 
