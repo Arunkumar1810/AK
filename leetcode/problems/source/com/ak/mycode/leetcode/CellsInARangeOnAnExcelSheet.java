@@ -3,7 +3,7 @@ package com.ak.mycode.leetcode;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CellsInAOnAnExcelSheet {
+public class CellsInARangeOnAnExcelSheet {
 
     public static void main(String[] args) {
         List<String> result = new Solution().cellsInRange("K1:L2");
